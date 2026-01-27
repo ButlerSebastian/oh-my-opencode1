@@ -35,6 +35,7 @@ import {
   createSisyphusJuniorNotepadHook,
   createQuestionLabelTruncatorHook,
   createSubagentQuestionBlockerHook,
+  createTasksTodowriteDisablerHook,
 } from "./hooks";
 import {
   contextCollector,
@@ -72,6 +73,17 @@ import {
   interactive_bash,
   startTmuxCheck,
   lspManager,
+  taskListTool,
+  taskCreateTool,
+  taskAbortTool,
+  taskRemoveTool,
+  taskUpdateTool,
+  taskSuspendTool,
+  taskExecuteTool,
+  taskGetTool,
+  taskResumeTool,
+  taskWaitTool,
+  teammateTool,
 } from "./tools";
 import { BackgroundManager } from "./features/background-agent";
 import { SkillMcpManager } from "./features/skill-mcp-manager";
@@ -244,6 +256,10 @@ const OhMyOpenCodePlugin: Plugin = async (ctx) => {
   const questionLabelTruncator = createQuestionLabelTruncatorHook();
   const subagentQuestionBlocker = createSubagentQuestionBlockerHook();
 
+  const tasksTodowriteDisabler = isHookEnabled("tasks-todowrite-disabler")
+    ? createTasksTodowriteDisablerHook({ sisyphusConfig: pluginConfig.sisyphus })
+    : null;
+
   const taskResumeInfo = createTaskResumeInfoHook();
 
   const tmuxSessionManager = new TmuxSessionManager(ctx, tmuxConfig);
@@ -381,6 +397,26 @@ const OhMyOpenCodePlugin: Plugin = async (ctx) => {
     modelCacheState,
   });
 
+  const sisyphusTasksEnabled = pluginConfig.sisyphus?.tasks?.enabled ?? false
+  const sisyphusSwarmEnabled = pluginConfig.sisyphus?.swarm?.enabled ?? false
+
+  const sisyphusTaskTools = sisyphusTasksEnabled ? {
+    task_list: taskListTool,
+    task_create: taskCreateTool,
+    task_get: taskGetTool,
+    task_update: taskUpdateTool,
+    task_abort: taskAbortTool,
+    task_remove: taskRemoveTool,
+    task_execute: taskExecuteTool,
+    task_resume: taskResumeTool,
+    task_suspend: taskSuspendTool,
+    task_wait: taskWaitTool,
+  } : {}
+
+  const sisyphusSwarmTools = sisyphusSwarmEnabled ? {
+    teammate: teammateTool,
+  } : {}
+
   return {
     tool: {
       ...builtinTools,
@@ -392,6 +428,8 @@ const OhMyOpenCodePlugin: Plugin = async (ctx) => {
       skill_mcp: skillMcpTool,
       slashcommand: slashcommandTool,
       interactive_bash,
+      ...sisyphusTaskTools,
+      ...sisyphusSwarmTools,
     },
 
     "chat.message": async (input, output) => {
@@ -605,6 +643,7 @@ const OhMyOpenCodePlugin: Plugin = async (ctx) => {
       await prometheusMdOnly?.["tool.execute.before"]?.(input, output);
       await sisyphusJuniorNotepad?.["tool.execute.before"]?.(input, output);
       await atlasHook?.["tool.execute.before"]?.(input, output);
+      await tasksTodowriteDisabler?.["tool.execute.before"]?.(input, output);
 
       if (input.tool === "task") {
         const args = output.args as Record<string, unknown>;
