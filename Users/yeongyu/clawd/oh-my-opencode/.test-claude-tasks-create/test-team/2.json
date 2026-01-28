@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Deploy app",
+  "description": "Deploy to production",
+  "status": "pending",
+  "activeForm": "Deploying app",
+  "blocks": [],
+  "blockedBy": []
+}

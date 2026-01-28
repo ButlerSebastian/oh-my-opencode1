@@ -1,0 +1,8 @@
+{
+  "id": "4",
+  "subject": "Task 1",
+  "description": "First task",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,14 @@
+{
+  "id": "3",
+  "subject": "Fix bug",
+  "description": "Fix critical bug",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": [],
+  "metadata": {
+    "priority": "high",
+    "tags": [
+      "urgent"
+    ]
+  }
+}

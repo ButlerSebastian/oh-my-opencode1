@@ -1,7 +1,7 @@
 import { join } from "path"
 import type { BackgroundManager } from "../background-agent/manager"
 import type { SisyphusSwarmConfig } from "../../config/schema"
-import { ensureDir, writeJsonAtomic } from "../sisyphus-tasks/storage"
+import { ensureDir, writeJsonAtomic } from "../claude-tasks/storage"
 import { sendMessage } from "./mailbox/mailbox"
 import type { ShutdownRequest } from "./mailbox/types"
 import {

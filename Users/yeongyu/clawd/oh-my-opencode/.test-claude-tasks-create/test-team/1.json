@@ -1,0 +1,8 @@
+{
+  "id": "1",
+  "subject": "Run tests",
+  "description": "Execute test suite",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

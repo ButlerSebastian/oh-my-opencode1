@@ -1,6 +1,6 @@
 import { tool, type ToolDefinition } from "@opencode-ai/plugin/tool"
 import { join } from "path"
-import { ensureDir, writeJsonAtomic } from "../../features/sisyphus-tasks/storage"
+import { ensureDir, writeJsonAtomic } from "../../features/claude-tasks/storage"
 import type { MailboxMessage } from "../../features/sisyphus-swarm/mailbox/types"
 import type { SwarmManager } from "../../features/sisyphus-swarm/swarm-manager"
 import { formatTeammate } from "../../features/sisyphus-swarm/formatters"

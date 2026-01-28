@@ -5,7 +5,7 @@ import {
   ensureDir,
   readJsonSafe,
   writeJsonAtomic
-} from "../../sisyphus-tasks/storage"
+} from "../../claude-tasks/storage"
 import {
   MailboxMessageSchema,
   type MailboxMessage,

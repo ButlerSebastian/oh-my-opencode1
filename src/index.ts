@@ -72,7 +72,7 @@ import {
   interactive_bash,
   startTmuxCheck,
   lspManager,
-  taskTool,
+
   createTeammateTool,
   sendMessageTool,
 } from "./tools";
