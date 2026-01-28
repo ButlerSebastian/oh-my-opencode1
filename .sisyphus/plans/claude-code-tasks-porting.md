@@ -210,13 +210,13 @@ interface Task {
 
 **Acceptance Criteria**:
 
-- [ ] Test file created: `src/features/claude-tasks/types.test.ts`
-- [ ] Test covers: Task 스키마 파싱, status enum 검증, blocks/blockedBy 배열
-- [ ] `bun test src/features/claude-tasks/types.test.ts` → PASS
+- [x] Test file created: `src/features/claude-tasks/types.test.ts`
+- [x] Test covers: Task schema parsing, status enum validation, blocks/blockedBy arrays
+- [x] `bun test src/features/claude-tasks/types.test.ts` → PASS
 
-- [ ] Test file created: `src/features/claude-tasks/storage.test.ts`
-- [ ] Test covers: getTaskDir returns `.sisyphus/tasks/{team}`, readJsonSafe, writeJsonAtomic, acquireLock
-- [ ] `bun test src/features/claude-tasks/storage.test.ts` → PASS
+- [x] Test file created: `src/features/claude-tasks/storage.test.ts`
+- [x] Test covers: getTaskDir returns `.sisyphus/tasks/{team}`, readJsonSafe, writeJsonAtomic, acquireLock
+- [x] `bun test src/features/claude-tasks/storage.test.ts` → PASS
 
 **Commit**: YES
 - Message: `feat(claude-tasks): add Claude Code compatible Task schema and storage`
@@ -282,9 +282,9 @@ Create a new task in the team's task list.
 
 **Acceptance Criteria**:
 
-- [ ] Test file created: `src/tools/claude-tasks/task-create.test.ts`
-- [ ] Test covers: subject/description 필수, activeForm 선택, metadata 선택, 생성된 task 검증
-- [ ] `bun test src/tools/claude-tasks/task-create.test.ts` → PASS
+- [x] Test file created: `src/tools/claude-tasks/task-create.test.ts`
+- [x] Test covers: subject/description 필수, activeForm 선택, metadata 선택, 생성된 task 검증
+- [x] `bun test src/tools/claude-tasks/task-create.test.ts` → PASS
 
 **Manual Verification**:
 ```typescript
