@@ -297,6 +297,22 @@ export const GitMasterConfigSchema = z.object({
   include_co_authored_by: z.boolean().default(true),
 })
 
+export const TmuxLayoutSchema = z.enum([
+  'main-horizontal',  // main pane top, agent panes bottom stack
+  'main-vertical',    // main pane left, agent panes right stack (default)
+  'tiled',            // all panes same size grid
+  'even-horizontal',  // all panes horizontal row
+  'even-vertical',    // all panes vertical stack
+])
+
+export const TmuxConfigSchema = z.object({
+  enabled: z.boolean().default(false),
+  layout: TmuxLayoutSchema.default('main-vertical'),
+  main_pane_size: z.number().min(20).max(80).default(60),
+  main_pane_min_width: z.number().min(40).default(120),
+  agent_pane_min_width: z.number().min(20).default(40),
+})
+
 export const OhMyOpenCodeConfigSchema = z.object({
   $schema: z.string().optional(),
   disabled_mcps: z.array(AnyMcpNameSchema).optional(),
@@ -316,6 +332,7 @@ export const OhMyOpenCodeConfigSchema = z.object({
   background_task: BackgroundTaskConfigSchema.optional(),
   notification: NotificationConfigSchema.optional(),
   git_master: GitMasterConfigSchema.optional(),
+  tmux: TmuxConfigSchema.optional(),
 })
 
 export type OhMyOpenCodeConfig = z.infer<typeof OhMyOpenCodeConfigSchema>
@@ -338,5 +355,7 @@ export type CategoryConfig = z.infer<typeof CategoryConfigSchema>
 export type CategoriesConfig = z.infer<typeof CategoriesConfigSchema>
 export type BuiltinCategoryName = z.infer<typeof BuiltinCategoryNameSchema>
 export type GitMasterConfig = z.infer<typeof GitMasterConfigSchema>
+export type TmuxConfig = z.infer<typeof TmuxConfigSchema>
+export type TmuxLayout = z.infer<typeof TmuxLayoutSchema>
 
 export { AnyMcpNameSchema, type AnyMcpName, McpNameSchema, type McpName } from "../mcp/types"

@@ -2171,6 +2171,42 @@
           "type": "boolean"
         }
       }
+    },
+    "tmux": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "layout": {
+          "default": "main-vertical",
+          "type": "string",
+          "enum": [
+            "main-horizontal",
+            "main-vertical",
+            "tiled",
+            "even-horizontal",
+            "even-vertical"
+          ]
+        },
+        "main_pane_size": {
+          "default": 60,
+          "type": "number",
+          "minimum": 20,
+          "maximum": 80
+        },
+        "main_pane_min_width": {
+          "default": 120,
+          "type": "number",
+          "minimum": 40
+        },
+        "agent_pane_min_width": {
+          "default": 40,
+          "type": "number",
+          "minimum": 20
+        }
+      }
     }
   }
 }
