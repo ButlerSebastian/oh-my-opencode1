@@ -725,9 +725,10 @@ The task tools haven't been used recently. If you're working on tasks that would
 
 **Acceptance Criteria**:
 
-- [ ] `bun test` → 모든 테스트 통과
-- [ ] `bun run typecheck` → 에러 없음
-- [ ] `bun run build` → 빌드 성공
+- [x] `bun run typecheck` → 에러 없음 ✅
+- [x] Update remaining test files to parse JSON (task-get, task-update, task-list) ✅
+- [x] `bun test` → 모든 테스트 통과 (26/26) ✅
+- [x] `bun run build` → 빌드 성공 ✅
 
 **Manual Verification**:
 - [ ] 전체 워크플로우 수동 테스트 완료

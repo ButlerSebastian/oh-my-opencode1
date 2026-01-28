@@ -50,6 +50,7 @@ describe("TaskGet", () => {
 
     //#when
     const resultStr = await taskGet.execute({ taskId: "1" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.task).not.toBeNull()
@@ -62,6 +63,7 @@ describe("TaskGet", () => {
     //#given
     //#when
     const resultStr = await taskGet.execute({ taskId: "999" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.task).toBeNull()
@@ -84,6 +86,7 @@ describe("TaskGet", () => {
 
     //#when
     const resultStr = await taskGet.execute({ taskId: "2" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.task).not.toBeNull()
@@ -98,6 +101,7 @@ describe("TaskGet", () => {
     //#given
     //#when
     const resultStr = await taskGet.execute({ taskId: "nonexistent" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.task).toBeNull()

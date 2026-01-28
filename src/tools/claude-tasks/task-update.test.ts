@@ -50,6 +50,7 @@ describe("TaskUpdate", () => {
 
     //#when
     const resultStr = await taskUpdate.execute({ taskId: "1", subject: "New subject" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(true)
@@ -70,6 +71,7 @@ describe("TaskUpdate", () => {
 
     //#when
     const resultStr = await taskUpdate.execute({ taskId: "1", status: "in_progress" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(true)
@@ -90,6 +92,7 @@ describe("TaskUpdate", () => {
 
     //#when
     const resultStr = await taskUpdate.execute({ taskId: "1", addBlocks: ["2", "3"] }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(true)
@@ -110,6 +113,7 @@ describe("TaskUpdate", () => {
 
     //#when
     const resultStr = await taskUpdate.execute({ taskId: "1", addBlockedBy: ["2"] }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(true)
@@ -120,6 +124,7 @@ describe("TaskUpdate", () => {
     //#given
     //#when
     const resultStr = await taskUpdate.execute({ taskId: "999", subject: "New" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(false)
@@ -140,6 +145,7 @@ describe("TaskUpdate", () => {
 
     //#when
     const resultStr = await taskUpdate.execute({ taskId: "1", status: "in_progress" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(false)
@@ -169,6 +175,7 @@ describe("TaskUpdate", () => {
 
     //#when
     const resultStr = await taskUpdate.execute({ taskId: "2", status: "in_progress" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(false)
@@ -199,6 +206,7 @@ describe("TaskUpdate", () => {
 
     //#when
     const resultStr = await taskUpdate.execute({ taskId: "2", status: "in_progress", owner: "sisyphus" }, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(false)
@@ -228,6 +236,7 @@ describe("TaskUpdate", () => {
       },
       {} as any
     )
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.success).toBe(true)

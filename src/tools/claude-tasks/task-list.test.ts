@@ -40,6 +40,7 @@ describe("TaskList", () => {
     //#given
     //#when
     const resultStr = await taskList.execute({}, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.tasks).toEqual([])
@@ -69,6 +70,7 @@ describe("TaskList", () => {
 
     //#when
     const resultStr = await taskList.execute({}, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.tasks).toHaveLength(2)
@@ -93,6 +95,7 @@ describe("TaskList", () => {
 
     //#when
     const resultStr = await taskList.execute({}, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.tasks[0].owner).toBe("sisyphus")
@@ -112,6 +115,7 @@ describe("TaskList", () => {
 
     //#when
     const resultStr = await taskList.execute({}, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.tasks[0].owner).toBeUndefined()
@@ -149,6 +153,7 @@ describe("TaskList", () => {
 
     //#when
     const resultStr = await taskList.execute({}, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.tasks.map((t) => t.id)).toEqual(["1", "2", "3"])
@@ -177,6 +182,7 @@ describe("TaskList", () => {
 
     //#when
     const resultStr = await taskList.execute({}, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.tasks).toHaveLength(1)
