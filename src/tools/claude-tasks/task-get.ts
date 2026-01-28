@@ -18,9 +18,9 @@ Make sure to read a task's latest state using \`TaskGet\` before updating it.
       const taskPath = join(taskDir, `${args.taskId}.json`)
       const task = readJsonSafe(taskPath, TaskSchema)
 
-      return {
+      return JSON.stringify({
         task: task,
-      }
+      })
     },
   })
 }

@@ -678,10 +678,10 @@ The task tools haven't been used recently. If you're working on tasks that would
 
 - [x] Legacy directories removed (sisyphus-tasks)
 - [x] Import references updated to claude-tasks
-- [ ] Tool return types fixed (need JSON.stringify)
-- [ ] delegate-task field names updated (title→subject, dependsOn→blockedBy)
-- [ ] ProtocolMessage type updated (add `from` field)
-- [ ] `bun run typecheck` → 에러 없음
+- [x] Tool return types fixed (JSON.stringify added)
+- [x] delegate-task field names updated (title→subject, dependsOn→blockedBy)
+- [x] ProtocolMessage type updated (IdleNotification with from, timestamp, etc.)
+- [x] `bun run typecheck` → 에러 없음
 
 **Commit**: YES
 - Message: `refactor(tasks): remove legacy sisyphus-tasks in favor of claude-tasks`

@@ -44,12 +44,12 @@ export function createTaskCreate(config: Partial<OhMyOpenCodeConfig>, teamName: 
         const validatedTask = TaskSchema.parse(task)
         writeJsonAtomic(join(taskDir, `${nextId}.json`), validatedTask)
 
-        return {
+        return JSON.stringify({
           task: {
             id: validatedTask.id,
             subject: validatedTask.subject,
           },
-        }
+        })
       } finally {
         lock.release()
       }

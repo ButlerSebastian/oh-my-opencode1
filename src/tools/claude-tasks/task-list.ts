@@ -19,13 +19,13 @@ Task completed. Call TaskList now to find your next available task or see if you
       const taskDir = getTaskDir(teamName, config)
 
       if (!existsSync(taskDir)) {
-        return { tasks: [] }
+        return JSON.stringify({ tasks: [] })
       }
 
       const files = readdirSync(taskDir).filter((f) => f.endsWith(".json") && !f.startsWith("."))
 
       if (files.length === 0) {
-        return { tasks: [] }
+        return JSON.stringify({ tasks: [] })
       }
 
       const tasks: Task[] = []
@@ -66,7 +66,7 @@ Task completed. Call TaskList now to find your next available task or see if you
         return item
       })
 
-      return { tasks: summary }
+      return JSON.stringify({ tasks: summary })
     },
   })
 }

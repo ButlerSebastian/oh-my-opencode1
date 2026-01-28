@@ -42,7 +42,8 @@ describe("TaskCreate", () => {
     }
 
     //#when
-    const result = await taskCreate.execute(args, {} as any)
+    const resultStr = await taskCreate.execute(args, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result).toHaveProperty("task")
@@ -59,7 +60,8 @@ describe("TaskCreate", () => {
     }
 
     //#when
-    const result = await taskCreate.execute(args, {} as any)
+    const resultStr = await taskCreate.execute(args, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.task.id).toBeDefined()
@@ -75,7 +77,8 @@ describe("TaskCreate", () => {
     }
 
     //#when
-    const result = await taskCreate.execute(args, {} as any)
+    const resultStr = await taskCreate.execute(args, {} as any)
+    const result = JSON.parse(resultStr)
 
     //#then
     expect(result.task.id).toBeDefined()
@@ -88,8 +91,10 @@ describe("TaskCreate", () => {
     const args2 = { subject: "Task 2", description: "Second task" }
 
     //#when
-    const result1 = await taskCreate.execute(args1, {} as any)
-    const result2 = await taskCreate.execute(args2, {} as any)
+    const result1Str = await taskCreate.execute(args1, {} as any)
+    const result2Str = await taskCreate.execute(args2, {} as any)
+    const result1 = JSON.parse(result1Str)
+    const result2 = JSON.parse(result2Str)
 
     //#then
     expect(result1.task.id).toBe("1")

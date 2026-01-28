@@ -32,21 +32,21 @@ Tasks are assigned using TaskUpdate with the \`owner\` parameter. Any agent can 
         const task = readJsonSafe(taskPath, TaskSchema)
 
         if (!task) {
-          return {
+          return JSON.stringify({
             success: false,
             taskId: args.taskId,
             updatedFields: [],
             error: "task_not_found",
-          }
+          })
         }
 
         if (task.status === "completed" || task.status === "deleted") {
-          return {
+          return JSON.stringify({
             success: false,
             taskId: args.taskId,
             updatedFields: [],
             error: "already_resolved",
-          }
+          })
         }
 
         if (args.status === "in_progress" && task.blockedBy.length > 0) {
@@ -57,12 +57,12 @@ Tasks are assigned using TaskUpdate with the \`owner\` parameter. Any agent can 
 
           const hasIncompleteBlockers = blockerTasks.some((t) => t.status !== "completed")
           if (hasIncompleteBlockers) {
-            return {
+            return JSON.stringify({
               success: false,
               taskId: args.taskId,
               updatedFields: [],
               error: "blocked",
-            }
+            })
           }
         }
 
@@ -74,12 +74,12 @@ Tasks are assigned using TaskUpdate with the \`owner\` parameter. Any agent can 
 
           const hasInProgressTask = ownerTasks.some((t) => t.status === "in_progress")
           if (hasInProgressTask) {
-            return {
+            return JSON.stringify({
               success: false,
               taskId: args.taskId,
               updatedFields: [],
               error: "agent_busy",
-            }
+            })
           }
         }
 
@@ -137,7 +137,7 @@ Tasks are assigned using TaskUpdate with the \`owner\` parameter. Any agent can 
           result.statusChange = { from: oldStatus, to: args.status }
         }
 
-        return result
+        return JSON.stringify(result)
       } finally {
         lock.release()
       }

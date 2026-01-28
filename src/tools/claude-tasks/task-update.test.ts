@@ -49,7 +49,7 @@ describe("TaskUpdate", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskUpdate.execute({ taskId: "1", subject: "New subject" }, {} as any)
+    const resultStr = await taskUpdate.execute({ taskId: "1", subject: "New subject" }, {} as any)
 
     //#then
     expect(result.success).toBe(true)
@@ -69,7 +69,7 @@ describe("TaskUpdate", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskUpdate.execute({ taskId: "1", status: "in_progress" }, {} as any)
+    const resultStr = await taskUpdate.execute({ taskId: "1", status: "in_progress" }, {} as any)
 
     //#then
     expect(result.success).toBe(true)
@@ -89,7 +89,7 @@ describe("TaskUpdate", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskUpdate.execute({ taskId: "1", addBlocks: ["2", "3"] }, {} as any)
+    const resultStr = await taskUpdate.execute({ taskId: "1", addBlocks: ["2", "3"] }, {} as any)
 
     //#then
     expect(result.success).toBe(true)
@@ -109,7 +109,7 @@ describe("TaskUpdate", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskUpdate.execute({ taskId: "1", addBlockedBy: ["2"] }, {} as any)
+    const resultStr = await taskUpdate.execute({ taskId: "1", addBlockedBy: ["2"] }, {} as any)
 
     //#then
     expect(result.success).toBe(true)
@@ -119,7 +119,7 @@ describe("TaskUpdate", () => {
   test("returns error when task not found", async () => {
     //#given
     //#when
-    const result = await taskUpdate.execute({ taskId: "999", subject: "New" }, {} as any)
+    const resultStr = await taskUpdate.execute({ taskId: "999", subject: "New" }, {} as any)
 
     //#then
     expect(result.success).toBe(false)
@@ -139,7 +139,7 @@ describe("TaskUpdate", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskUpdate.execute({ taskId: "1", status: "in_progress" }, {} as any)
+    const resultStr = await taskUpdate.execute({ taskId: "1", status: "in_progress" }, {} as any)
 
     //#then
     expect(result.success).toBe(false)
@@ -168,7 +168,7 @@ describe("TaskUpdate", () => {
     writeFileSync(join(TEST_DIR, "2.json"), JSON.stringify(blocked, null, 2))
 
     //#when
-    const result = await taskUpdate.execute({ taskId: "2", status: "in_progress" }, {} as any)
+    const resultStr = await taskUpdate.execute({ taskId: "2", status: "in_progress" }, {} as any)
 
     //#then
     expect(result.success).toBe(false)
@@ -198,7 +198,7 @@ describe("TaskUpdate", () => {
     writeFileSync(join(TEST_DIR, "2.json"), JSON.stringify(task2, null, 2))
 
     //#when
-    const result = await taskUpdate.execute({ taskId: "2", status: "in_progress", owner: "sisyphus" }, {} as any)
+    const resultStr = await taskUpdate.execute({ taskId: "2", status: "in_progress", owner: "sisyphus" }, {} as any)
 
     //#then
     expect(result.success).toBe(false)
@@ -218,7 +218,7 @@ describe("TaskUpdate", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskUpdate.execute(
+    const resultStr = await taskUpdate.execute(
       {
         taskId: "1",
         subject: "New",

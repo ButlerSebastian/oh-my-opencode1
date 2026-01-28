@@ -388,9 +388,7 @@ const OhMyOpenCodePlugin: Plugin = async (ctx) => {
   const sisyphusTasksEnabled = pluginConfig.sisyphus?.tasks?.enabled ?? false
   const sisyphusSwarmEnabled = pluginConfig.sisyphus?.swarm?.enabled ?? false
 
-  const sisyphusTaskTools = sisyphusTasksEnabled ? {
-    task_tool: taskTool,
-  } as Record<string, ToolDefinition> : {}
+  const sisyphusTaskTools = sisyphusTasksEnabled ? {} as Record<string, ToolDefinition> : {}
 
   const swarmConfig = pluginConfig.sisyphus?.swarm
   const swarmManager = sisyphusSwarmEnabled && swarmConfig

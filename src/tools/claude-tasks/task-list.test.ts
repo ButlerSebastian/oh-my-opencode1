@@ -39,7 +39,7 @@ describe("TaskList", () => {
   test("returns empty array when no tasks exist", async () => {
     //#given
     //#when
-    const result = await taskList.execute({}, {} as any)
+    const resultStr = await taskList.execute({}, {} as any)
 
     //#then
     expect(result.tasks).toEqual([])
@@ -68,7 +68,7 @@ describe("TaskList", () => {
     writeFileSync(join(TEST_DIR, "2.json"), JSON.stringify(task2, null, 2))
 
     //#when
-    const result = await taskList.execute({}, {} as any)
+    const resultStr = await taskList.execute({}, {} as any)
 
     //#then
     expect(result.tasks).toHaveLength(2)
@@ -92,7 +92,7 @@ describe("TaskList", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskList.execute({}, {} as any)
+    const resultStr = await taskList.execute({}, {} as any)
 
     //#then
     expect(result.tasks[0].owner).toBe("sisyphus")
@@ -111,7 +111,7 @@ describe("TaskList", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskList.execute({}, {} as any)
+    const resultStr = await taskList.execute({}, {} as any)
 
     //#then
     expect(result.tasks[0].owner).toBeUndefined()
@@ -148,7 +148,7 @@ describe("TaskList", () => {
     writeFileSync(join(TEST_DIR, "2.json"), JSON.stringify(task2, null, 2))
 
     //#when
-    const result = await taskList.execute({}, {} as any)
+    const resultStr = await taskList.execute({}, {} as any)
 
     //#then
     expect(result.tasks.map((t) => t.id)).toEqual(["1", "2", "3"])
@@ -176,7 +176,7 @@ describe("TaskList", () => {
     writeFileSync(join(TEST_DIR, "2.json"), JSON.stringify(task2, null, 2))
 
     //#when
-    const result = await taskList.execute({}, {} as any)
+    const resultStr = await taskList.execute({}, {} as any)
 
     //#then
     expect(result.tasks).toHaveLength(1)

@@ -73,6 +73,11 @@ export type TaskCompleted = z.infer<typeof TaskCompletedSchema>
 
 export const IdleNotificationSchema = z.object({
   type: z.literal("idle_notification"),
+  from: z.string(),
+  timestamp: z.string(),
+  completedTaskId: z.string().optional(),
+  completedStatus: z.enum(["completed", "failed"]).optional(),
+  failureReason: z.string().optional(),
 })
 
 export type IdleNotification = z.infer<typeof IdleNotificationSchema>

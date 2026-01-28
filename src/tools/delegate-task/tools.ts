@@ -890,7 +890,7 @@ To continue this session: session_id="${task.sessionID}"`
         }
 
         const blockers: string[] = []
-        for (const blockerId of executeTask.dependsOn) {
+        for (const blockerId of executeTask.blockedBy) {
           const blocker = readJsonSafe(join(executeTaskDir, `${blockerId}.json`), TaskSchema)
           if (blocker && blocker.status !== "completed") {
             blockers.push(blockerId)
@@ -902,12 +902,12 @@ To continue this session: session_id="${task.sessionID}"`
       }
 
       // Compose effective prompt and description
-      const effectiveDescription = args.description || (executeTask?.title ?? "Task execution")
+      const effectiveDescription = args.description || (executeTask?.subject ?? "Task execution")
       let effectivePrompt = args.prompt
 
       if (executeTask) {
         const taskPromptParts = [
-          `## Task: ${executeTask.title}`,
+          `## Task: ${executeTask.subject}`,
           "",
           "## Description",
           executeTask.description || "(none)",
@@ -915,7 +915,7 @@ To continue this session: session_id="${task.sessionID}"`
            "## Task Metadata",
            `- Task ID: ${executeTask.id}`,
            `- Status: in_progress`,
-           `- Blocked By: ${executeTask.dependsOn.length > 0 ? executeTask.dependsOn.join(", ") : "none"}`,
+           `- Blocked By: ${executeTask.blockedBy.length > 0 ? executeTask.blockedBy.join(", ") : "none"}`,
         ]
 
         if (args.prompt) {

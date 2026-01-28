@@ -49,7 +49,7 @@ describe("TaskGet", () => {
     writeFileSync(join(TEST_DIR, "1.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskGet.execute({ taskId: "1" }, {} as any)
+    const resultStr = await taskGet.execute({ taskId: "1" }, {} as any)
 
     //#then
     expect(result.task).not.toBeNull()
@@ -61,7 +61,7 @@ describe("TaskGet", () => {
   test("returns null when task does not exist", async () => {
     //#given
     //#when
-    const result = await taskGet.execute({ taskId: "999" }, {} as any)
+    const resultStr = await taskGet.execute({ taskId: "999" }, {} as any)
 
     //#then
     expect(result.task).toBeNull()
@@ -83,7 +83,7 @@ describe("TaskGet", () => {
     writeFileSync(join(TEST_DIR, "2.json"), JSON.stringify(task, null, 2))
 
     //#when
-    const result = await taskGet.execute({ taskId: "2" }, {} as any)
+    const resultStr = await taskGet.execute({ taskId: "2" }, {} as any)
 
     //#then
     expect(result.task).not.toBeNull()
@@ -97,7 +97,7 @@ describe("TaskGet", () => {
   test("handles missing task gracefully", async () => {
     //#given
     //#when
-    const result = await taskGet.execute({ taskId: "nonexistent" }, {} as any)
+    const resultStr = await taskGet.execute({ taskId: "nonexistent" }, {} as any)
 
     //#then
     expect(result.task).toBeNull()
